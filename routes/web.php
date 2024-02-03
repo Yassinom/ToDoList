@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\TodolistContoller;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +16,23 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', function() {
+    // return view('welcome');
+    $var = DB::select("select * from list_items");
+    dd($var);
 });
+
+Route::get('/db', function() {
+    $variable = DB::select("select * from list_items");
+    dd($variable);
+});
+
+Route::post('/saveItemRoute', [TodolistContoller::class, 'saveItem'])->name('saveItem');
+
+
+
+
+
+
+
+
