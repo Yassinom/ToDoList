@@ -16,18 +16,18 @@ use App\Http\Controllers\TodolistContoller;
 |
 */
 
-Route::get('/', function() {
-    // return view('welcome');
-    $var = DB::select("select * from list_items");
-    dd($var);
-});
+Route::get('/', [TodolistContoller::class, 'index']);
+
+Route::post('/saveItemRoute', [TodolistContoller::class, 'saveItem'])->name('saveItem');
+
+Route::post('/deleteItemRoute/{id}', [TodolistContoller::class, 'deleteItem'])->name('deleteItem');
+
 
 Route::get('/db', function() {
     $variable = DB::select("select * from list_items");
     dd($variable);
 });
 
-Route::post('/saveItemRoute', [TodolistContoller::class, 'saveItem'])->name('saveItem');
 
 
 
@@ -36,3 +36,7 @@ Route::post('/saveItemRoute', [TodolistContoller::class, 'saveItem'])->name('sav
 
 
 
+
+
+// $var = DB::select("select * from list_items");
+//     dd($var);
